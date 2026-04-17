@@ -1,0 +1,33 @@
+name: Battery Health Checker
+
+on:
+  schedule:
+    - cron: '0 */12 * * *'    # Setiap 12 jam (jam 00:00 dan 12:00 UTC)
+  workflow_dispatch:           # Bisa dijalankan manual
+
+jobs:
+  check-battery:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Make script executable
+        run: chmod +x check_battery.sh
+
+      - name: Install bc (calculator untuk script)
+        run: sudo apt-get update && sudo apt-get install -y bc
+
+      - name: Run battery check
+        run: ./check_battery.sh
+
+      - name: Commit and push results
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add battery_logs/ check_battery.sh
+          git diff --cached --quiet || git commit -m "🔄 Update battery status [$(date +'%Y-%m-%d %H:%M:%S')]"
+          git push
