@@ -2,8 +2,8 @@ name: Battery Health Checker
 
 on:
   schedule:
-    - cron: '0 */12 * * *'    # Setiap 12 jam (jam 00:00 dan 12:00 UTC)
-  workflow_dispatch:           # Bisa dijalankan manual
+    - cron: '0 0 * * *'      # Setiap hari jam 00:00 UTC (07:00 WIB)
+  workflow_dispatch:          # Bisa dijalankan manual
 
 jobs:
   check-battery:
