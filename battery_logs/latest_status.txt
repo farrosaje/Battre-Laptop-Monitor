@@ -1,4 +1,4 @@
-=== BATTERY REPORT (SIMULATED) - 2026-08-02 02:03:18 ===
-Kapasitas: 43% (simulasi)
-Status: Discharging
+=== BATTERY REPORT (SIMULATED) - 2026-08-03 02:05:25 ===
+Kapasitas: 32% (simulasi)
+Status: Charging
 Catatan: Sistem tidak memiliki baterai fisik
